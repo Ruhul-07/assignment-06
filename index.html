@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PET-Adoption</title>
+
+    <!-- Daisy UI and Tailwind CSS CDN Link -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- google font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- sppiners styles -->
+     <style>
+       
+        .loader {
+          width: 45px;
+          aspect-ratio: .75;
+          --c: no-repeat linear-gradient(#000 0 0);
+          background: 
+            var(--c) 0%   100%,
+            var(--c) 50%  100%,
+            var(--c) 100% 100%;
+          background-size: 20% 65%;
+          animation: l5 1s infinite linear;
+        }
+        @keyframes l5 {
+          20% {background-position: 0% 50% ,50% 100%,100% 100%}
+          40% {background-position: 0% 0%  ,50% 50% ,100% 100%}
+          60% {background-position: 0% 100%,50% 0%  ,100% 50% }
+          80% {background-position: 0% 100%,50% 100%,100% 0%  }
+        }
+     </style>
+    <!-- Tailwind Config File -->
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#131313',
+                secondary: '#13131399',
+                btnColor: '#0E7A81',
+                baseColor: '#FFFFFF',
+                baseColorMid: '#FFFFFFE6',
+                baseColorLess: '#FFFFFF99',
+              },
+              fontFamily: {
+                'lato': ['Lato', 'sans-serif'],
+                'inter': ['Inter', 'sans-serif'],
+              }
+            }
+          }
+        }
+      </script>
+</head>
+<body>
+    <!-- Header Area Start Here -->
+    <header class="w-11/12 mx-auto">
+        <!-- Nav Area Start -->
+        <nav class="flex justify-between items-center">
+           <div class="logo-area">
+            <div class="logo-img flex gap-3 items-center">
+              <img src="./assets/logo.webp" alt="logo-img">
+              <h2 class="text-3xl font-lato font-extrabold text-primary">Peddy</h2>
+            </div>
+           </div>
+           <div class="menu-item">
+            <ul class="flex gap-8">
+              <li class="font-lato font-bold text-primary text-2xl">Home</li>
+              <li class="font-lato font-bold text-primary text-2xl">Shop</li>
+              <li class="font-lato font-bold text-primary text-2xl">Contact</li>
+            </ul>
+           </div>
+           <div class="user-login-icon">
+            <div class="px-4 py-4 inline-block border rounded-full">
+              <img class="w-6 h-6" src="https://img.icons8.com/?size=100&id=95101&format=png&color=000000" alt="">
+            </div>
+           </div>
+        </nav>
+        <!-- Nav Area End -->
+
+        <!-- Banner Section Area Start -->
+         <section>
+            <div class="banner-title-area text-center space-y-4 my-8">
+              <h5 class="font-bold text-xl md:text-2xl font-lato text-secondary">Bringing Families Together ❤️‍🔥 </h5>
+              <h1 class="font-lato font-extrabold text-5xl md:text-7xl text-primary leading-tight">Your Path to Adoption <br class="hidden sm:block"> Starts Here</h1>
+              <p class="font-medium md:text-xl text-primary font-lato">It is a long established fact that a reader will be distracted by the readable content of a page when looking <br> at its layout. The point of using Lorem Ipsum is that it has a.</p>
+              <div>
+                <a href="#main-section"><button class="bg-btnColor text-baseColor px-8 py-4 rounded-xl text-xl mt-6">View More</button></a>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <img src="./assets/pet.webp" alt="">
+            </div>
+         </section>
+        <!-- Banner Section Area End -->
+    </header>
+    <!-- Header Area End Here -->
+
+    <!-- Main Area Start Here -->
+     <main id="main-section" class="w-11/12 mx-auto">
+      <div class="text-center space-y-4 mt-24 mb-12">
+        <h2 class="font-lato font-extrabold text-primary text-4xl">Adopt Your Best Friend</h2>
+        <p class="font-lato font-medium text-[#131313B3]">It is a long established fact that a reader will be distracted by the readable content of a <br> page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
+      </div>
+
+      <div id="categories" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+      </div>
+      <div class="flex justify-between items-center mb-10">
+        <h3 class="font-lato font-extrabold text-2xl">Best Deal For you</h3>
+        <button onclick= "sortPets()" class="bg-btnColor rounded-xl px-8 py-4 text-baseColor font-lato font-bold text-xl">Sort by Price</button>
+      </div>
+
+      <!-- sppiners div -->
+       <div id="loading-sppiners" class="loader ml-[50%] mb-40 mt-20">
+        
+       </div>
+
+
+      <!-- Show all category items area -->
+     <section class="grid grid-cols-4 gap-4">
+      <div class="grid col-span-3 w-full">
+          <div id="show-items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 hidden">
+
+          </div>
+          <div id="show-all-item" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+  
+          </div>
+      </div>
+      <div class="border w-full mb-10 ">
+        <div id="like-image-show" class="grid grid-cols-2 gap-2">
+        
+        </div>
+      </div>
+     </section>
+
+     <!-- adopt btn Modal -->
+    <section id="adopt-btn-modal" class="adopt-btn">
+
+    </section>
+
+     <!--Details Modal Section -->
+     <section id="show-moadal-area" class="modal-area">
+     
+    </section>
+
+    
+     </main>
+    <!-- Main Area End Here -->
+
+    <!-- Footer Area Start Here -->
+     <footer class="bg-primary">
+      <div class="w-11/12 mx-auto flex flex-col gap-4  md:flex-row justify-between py-10">
+        <div class="space-y-6">
+          <div class="logo-area">
+            <div class="logo-img flex gap-3 items-center">
+              <img src="./assets/logo.webp" alt="logo-img">
+              <h2 class="text-3xl font-lato font-extrabold text-baseColor">Peddy</h2>
+            </div>
+           </div>
+           <div>
+            <p class="text-baseColorMid font-lato text-">Location: av. Washington 165, NY CA <br> 54003
+              Phone: +31 85 964 47 25 <br>
+              Email: info@yourdomain.com <br>
+              Openings hours: 9.00 AM - 5.00 PM</p>
+           </div>
+           <div class="flex w-10 h-10 gap-5 justify-between">
+            <img src="https://img.icons8.com/?size=100&id=118497&format=png&color=000000" alt="">
+            <img src="https://img.icons8.com/?size=100&id=cMRBi0rI3iwb&format=png&color=000000" alt="">
+            <img src="https://img.icons8.com/?size=100&id=19318&format=png&color=000000" alt="">
+            <img src="https://img.icons8.com/?size=100&id=32323&format=png&color=000000" alt="">
+           </div>
+        </div>
+        <!-- footer midle area -->
+         <div class="space-y-6">
+          <h5 class="text-baseColorMid font-bold text-lg font-inter">Useful Links</h5>
+          <div>
+            <ul>
+              <li class="text-baseColorLess font-lato">Home</li>
+              <li class="text-baseColorLess font-lato">About Us</li>
+              <li class="text-baseColorLess font-lato">Animals</li>
+              <li class="text-baseColorLess font-lato">Foundation</li>
+              <li class="text-baseColorLess font-lato">Contact</li>
+            </ul>
+          </div>
+         </div>
+         <!-- footer last -->
+          <div class="space-y-6">
+              <h5 class="text-baseColorMid font-bold text-lg font-inter">Drop a Message</h5>
+            <div class="space-y-4">
+              <input type="text" placeholder="Enter your email" class="p-4 rounded-xl w-[240px] h-[49px] bg-[#FFFFFF0D]" />
+              <div><button class="text-baseColor text-xl font-bold font-lato rounded-xl bg-btnColor w-[240px] h-[49px]">Subscribe</button></div>
+            </div>
+          </div>
+      </div>
+     </footer>
+    <!-- Footer Area end Here -->
+
+    <script src="./scripts/app.js"></script>
+</body>
+</html>
