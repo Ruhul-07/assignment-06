@@ -24,5 +24,5 @@ ex:
 3.Promises
 4.Let and Const etc.
 
-Live link: 
+Live link: https://assignment-project-06.netlify.app/
 
